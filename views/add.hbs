@@ -5,7 +5,7 @@
       <p>Your contact email will be shared with registered users to apply to your gig</p>
       {{#each errors}}
         <div>
-          <p>{{text}}</p>
+          <p>{{errors.value}}</p>
         </div>
       {{/each}}
       <form method="POST" action="/gigs/add">
