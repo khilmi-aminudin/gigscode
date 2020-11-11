@@ -3,7 +3,7 @@ const router = express.Router()
 const db = require('../models')
 
 router.get('/', (req,res) => {
-    db.gig.findAll()
+    db.Gigs.findAll()
         .then(gigs => {
             res.render('gigs',{
                 gigs
@@ -60,7 +60,7 @@ router.post('/add', (req,res) => {
         technologies = technologies.toLowerCase().replace(/, /g, ',')
 
         // insert into table
-        db.gig.create({
+        db.Gigs.create({
             title,
             technologies,
             budget,
