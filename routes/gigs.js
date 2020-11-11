@@ -41,55 +41,57 @@ router.post('/add', (req,res) => {
     let {title,technologies,budget,description,contact_email} = req.body
     let errors = {}
 
+    console.log(req.body)
+
     // validate fields
-    if(!title){
-        errors.title =  'Please add a title'
-    }
-    if(!technologies){
-        errors.technologies = 'Please add some technologies'
-    }
-    if(!description){
-        errors.description = 'Please add a description'
-    }
-    // if(!budget){
-    //     errors.budget = 'Please add the budget'
+    // if(!title){
+    //     errors.title =  'Please add a title'
     // }
-    if(!contact_email){ 
-        errors.contact_email = 'Please add a contact_email'
-    }
+    // if(!technologies){
+    //     errors.technologies = 'Please add some technologies'
+    // }
+    // if(!description){
+    //     errors.description = 'Please add a description'
+    // }
+    // // if(!budget){
+    // //     errors.budget = 'Please add the budget'
+    // // }
+    // if(!contact_email){ 
+    //     errors.contact_email = 'Please add a contact_email'
+    // }
 
-    const isEmptyErrors = Object.keys(errors).length === 0 && errors.constructor === Object
-    // check for errors
-    if(!isEmptyErrors){
-        res.render('add',{
-            errors,
-            title,
-            technologies,
-            budget,
-            description,
-            contact_email
-        })
-    }else{
-        if(!budget){
-            budget = 'unknown'
-        }else{
-            budget = `$${budget}`
-        }
+    // const isEmptyErrors = Object.keys(errors).length === 0 && errors.constructor === Object
+    // // check for errors
+    // if(!isEmptyErrors){
+    //     res.render('add',{
+    //         errors,
+    //         title,
+    //         technologies,
+    //         budget,
+    //         description,
+    //         contact_email
+    //     })
+    // }else{
+    //     if(!budget){
+    //         budget = 'unknown'
+    //     }else{
+    //         budget = `$${budget}`
+    //     }
 
-        // Make lowercase and remove space after coma
-        technologies = technologies.toLowerCase().replace(/, /g, ',')
+    //     // Make lowercase and remove space after coma
+    //     technologies = technologies.toLowerCase().replace(/, /g, ',')
 
-        // insert into table
-        db.gig.create({
-            title,
-            technologies,
-            budget,
-            description,
-            contact_email
-        })
-        .then(() => res.redirect('/gigs'))
-        .catch(err => console.log(err))
-    }
+    //     // insert into table
+    //     db.gig.create({
+    //         title,
+    //         technologies,
+    //         budget,
+    //         description,
+    //         contact_email
+    //     })
+    //     .then(() => res.redirect('/gigs'))
+    //     .catch(err => console.log(err))
+    // }
 
 })
 
